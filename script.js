@@ -121,14 +121,17 @@ function updateUI() {
         li.onclick = () => openModal(item.type, item.id);
         
         li.innerHTML = `
-            <div>
-                <strong>${item.description}</strong><br>
-                <small>${item.date}</small>
-            </div>
-            <span style="color: ${item.type === 'deposit' ? '#2ecc71' : '#e74c3c'}">
-                ${item.type === 'deposit' ? '+' : '-'} ₱${item.amount.toLocaleString()}
-            </span>
-        `;
+    <div style="display: flex; align-items: center;">
+        <div class="cat-icon">${icons[item.category] || "📝"}</div>
+        <div>
+            <strong>${item.description}</strong><br>
+            <small>${item.date} • ${item.category}</small>
+        </div>
+    </div>
+    <span style="color: ${item.type === 'deposit' ? '#2ecc71' : '#e74c3c'}">
+        ${item.type === 'deposit' ? '+' : '-'} ₱${item.amount.toLocaleString()}
+    </span>
+`;
         listDisplay.appendChild(li);
     });
 }
