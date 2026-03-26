@@ -66,7 +66,7 @@ function closeModal() {
 function processSubmit() {
     const amt = document.getElementById('input-amount').value;
     const desc = document.getElementById('input-desc').value;
-    const category = document.getElementById('input-category').value;
+    const category = (currentType === 'deposit') ? "General" : document.getElementById('input-category').value;
 
     if (!amt || !desc) {
         alert("Please fill all fields");
