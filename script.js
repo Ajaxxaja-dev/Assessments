@@ -1,3 +1,12 @@
+const icons = {
+    Sports: "🏀",
+    Snacks: "🍽️",
+    Community: "🤝",
+    Transport: "🚲",
+    Dues: "💰",
+    Other: "📝",
+    General: "📊"
+};
 // Login Security Logic
 function checkLogin() {
     const userField = document.getElementById('login-user').value;
@@ -28,23 +37,19 @@ let editingId = null;
 function openModal(type, id = null) {
     currentType = type;
     editingId = id;
+    document.getElementById('input-modal').style.display = 'flex';
     
-    const modal = document.getElementById('input-modal');
-    const modalTitle = document.getElementById('modal-title');
-    
-    modal.style.display = 'flex';
-
     if (id) {
-        // Find the specific transaction to edit
         const item = transactions.find(t => t.id === id);
-        modalTitle.innerText = "Edit Activity";
+        document.getElementById('modal-title').innerText = "Edit Activity";
         document.getElementById('input-amount').value = item.amount;
         document.getElementById('input-desc').value = item.description;
+        document.getElementById('input-category').value = item.category || "Other";
     } else {
-        // Reset fields for new entry
-        modalTitle.innerText = `Add ${type}`;
+        document.getElementById('modal-title').innerText = `Add ${type}`;
         document.getElementById('input-amount').value = '';
         document.getElementById('input-desc').value = '';
+        document.getElementById('input-category').value = "General";
     }
 }
 
@@ -57,6 +62,7 @@ function closeModal() {
 function processSubmit() {
     const amt = document.getElementById('input-amount').value;
     const desc = document.getElementById('input-desc').value;
+    const category = document.getElementById('input-category').value;
 
     if (!amt || !desc) {
         alert("Please fill all fields");
@@ -64,21 +70,22 @@ function processSubmit() {
     }
 
     if (editingId) {
-        // Update existing item
-        const index = transactions.findIndex(t => t.id === editingId);
-        transactions[index].amount = parseFloat(amt);
-        transactions[index].description = desc;
-    } else {
+    const index = transactions.findIndex(t => t.id === editingId);
+    transactions[index].amount = parseFloat(amt);
+    transactions[index].description = desc;
+    transactions[index].category = category; // Add this
+} else {
         // Create new item
         const newEntry = {
-            id: Date.now(),
-            type: currentType,
-            amount: parseFloat(amt),
-            description: desc,
-            date: new Date().toLocaleDateString()
-        };
-        transactions.push(newEntry);
-    }
+        id: Date.now(),
+        type: currentType,
+        amount: parseFloat(amt),
+        description: desc,
+        category: category, // Add this
+        date: new Date().toLocaleDateString()
+    };
+    transactions.push(newEntry);
+}
     
     saveAndRefresh();
     closeModal();
