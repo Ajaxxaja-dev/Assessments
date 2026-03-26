@@ -7,12 +7,48 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="login-screen" class="modal-overlay" style="display: flex; background: #0b1527;">
+  <div id="login-screen" class="modal-overlay" style="display: flex; background: #0b1527; z-index: 999;">
     <div class="modal-content" style="text-align: center;">
-       <div id="input-modal" class="modal-overlay">
+        <img src="logo.png" alt="Logo" style="width: 80px; margin-bottom: 10px;">
+        <h2>Treasurer Login</h2>
+        <input type="text" id="login-user" placeholder="Username">
+        <input type="password" id="login-pass" placeholder="Password">
+        <button onclick="checkLogin()" class="btn deposit-btn" style="width: 100%; margin-top: 10px;">Login</button>
+        <p id="login-error" style="color: red; display: none; margin-top: 10px;">Invalid Credentials</p>
+    </div>
+</div>
+
+<div class="app-container">
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="club-logo">
+        </div>
+        <h1>Aurora Budget Tracker</h1>
+        <div class="balance-card">
+            <p>Current Balance</p>
+            <h2 id="total-balance">₱0.00</h2>
+        </div>
+    </header>
+
+    <main>
+        <div class="actions">
+            <button onclick="openModal('deposit')" class="btn deposit-btn">Deposit</button>
+            <button onclick="openModal('withdraw')" class="btn withdraw-btn">Withdraw</button>
+        </div>
+
+        <h3>Recent Activity</h3>
+        <ul id="transaction-list"></ul>
+    </main>
+
+    <footer>
+        <button onclick="confirmReset()" class="reset-link">Reset All Data</button>
+    </footer>
+</div>
+
+<div id="input-modal" class="modal-overlay" style="display: none;">
     <div class="modal-content">
         <h3 id="modal-title">New Transaction</h3>
-
+        
         <select id="input-category">
             <option value="General">Select Category</option>
             <option value="Sports">🏀 Sports Equipment</option>
@@ -23,57 +59,15 @@
             <option value="Other">📝 Other</option>
         </select>
 
-        <input type="number" id="input-amount" ...>
-        </div>
-</div>
-        <img src="logo.png" alt="Logo" style="width: 80px; margin-bottom: 10px;">
-        <h2>BYC Budgetary Assessment</h2>
-        <p>Login to manage the budget for BYC related events</p>
-        <input type="text" id="login-user" placeholder="Username">
-        <input type="password" id="login-pass" placeholder="Password">
-        <button onclick="checkLogin()" class="btn deposit-btn" style="width: 100%; margin-top: 10px;">Login</button>
-        <p id="login-error" style="color: red; display: none; margin-top: 10px;">Invalid Credentials</p>
-    </div>
-</div>
-    <div class="app-container">
-        <header>
-            <div class="logo-container">
-                <img src="logo.png" alt="Burgosinian Youth Club Logo" class="club-logo">
-            </div>
-            <h1>Aurora Budget Tracker</h1>
-            <div class="balance-card">
-                <p>Current Balance</p>
-                <h2 id="total-balance">₱0.00</h2>
-            </div>
-        </header>
-
-        <main>
-            <div class="actions">
-                <button onclick="openModal('deposit')" class="btn deposit-btn">Deposit</button>
-                <button onclick="openModal('withdraw')" class="btn withdraw-btn">Withdraw</button>
-            </div>
-
-            <h3>Recent Activity</h3>
-            <ul id="transaction-list">
-                </ul>
-        </main>
-
-        <footer>
-            <button onclick="confirmReset()" class="reset-link">Reset All Data</button>
-        </footer>
-    </div>
-
-    <div id="input-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3 id="modal-title">New Transaction</h3>
-            <input type="number" id="input-amount" placeholder="Amount (₱)" inputmode="decimal">
-            <input type="text" id="input-desc" placeholder="Description (e.g. Lunch)">
-            <div class="modal-actions">
-                <button onclick="closeModal()" class="btn cancel-btn">Cancel</button>
-                <button onclick="processSubmit()" class="btn save-btn">Save</button>
-            </div>
+        <input type="number" id="input-amount" placeholder="Amount (₱)" inputmode="decimal">
+        <input type="text" id="input-desc" placeholder="Description">
+        
+        <div class="modal-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+            <button onclick="closeModal()" class="btn cancel-btn" style="background: #95a5a6; color: white; flex: 1;">Cancel</button>
+            <button onclick="processSubmit()" class="btn save-btn" style="background: #2ecc71; color: white; flex: 1;">Save</button>
         </div>
     </div>
+</div>
 
     <script src="script.js"></script>
 </body>
