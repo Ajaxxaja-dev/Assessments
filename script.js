@@ -162,3 +162,41 @@ window.addEventListener('load', () => {
             .catch(err => console.log('Service Worker Failed:', err));
     }
 });
+
+function exportToCSV() {
+    if (transactions.length === 0) {
+        alert("No data to export yet!");
+        return;
+    }
+
+    // 1. Create the Header Row
+    let csvContent = "Date,Description,Category,Type,Amount\n";
+
+    // 2. Add the Data Rows
+    transactions.forEach(item => {
+        const row = [
+            item.date,
+            `"${item.description}"`, // Quotes handle commas in descriptions
+            item.category || "General",
+            item.type.toUpperCase(),
+            item.amount
+        ].join(",");
+        csvContent += row + "\n";
+    });
+
+    // 3. Create a Downloadable Blob
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    
+    // 4. Trigger the Download
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    
+    // Naming the file with the current date
+    const fileName = `BYC_Report_${new Date().toLocaleDateString().replace(/\//g, '-')}.csv`;
+    link.setAttribute("download", fileName);
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
