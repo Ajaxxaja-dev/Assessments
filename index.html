@@ -9,14 +9,23 @@
 <body>
     <div id="login-screen" class="modal-overlay" style="display: flex; background: #0b1527;">
     <div class="modal-content" style="text-align: center;">
+       <div id="input-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3 id="modal-title">New Transaction</h3>
+
         <select id="input-category">
-    <option value="General">Select Category</option>
-    <option value="Equipment">🪢 Equipments</option>
-    <option value="Snacks">🍽️ Meeting Snacks</option>
-    <option value="Community">🤝 Community Service</option>
-    <option value="Transport">🚲 Transportation</option>
-    <option value="Other">📝 Other</option>
-</select>
+            <option value="General">Select Category</option>
+            <option value="Sports">🏀 Sports Equipment</option>
+            <option value="Snacks">🍽️ Meeting Snacks</option>
+            <option value="Community">🤝 Community Service</option>
+            <option value="Transport">🚲 Transportation</option>
+            <option value="Dues">💰 Member Dues</option>
+            <option value="Other">📝 Other</option>
+        </select>
+
+        <input type="number" id="input-amount" ...>
+        </div>
+</div>
         <img src="logo.png" alt="Logo" style="width: 80px; margin-bottom: 10px;">
         <h2>BYC Budgetary Assessment</h2>
         <p>Login to manage the budget for BYC related events</p>
