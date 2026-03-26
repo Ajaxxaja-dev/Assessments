@@ -137,3 +137,33 @@ header h1 {
     cursor: pointer;
     font-size: 0.9rem;
 }
+
+/* Styling for the dropdown menu */
+#input-category {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+}
+
+/* Category Icon Circle */
+.cat-icon {
+    background: #f0f2f5;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 12px;
+}
+
+/* Adjust the list item layout */
+.transaction-item div {
+    display: flex;
+    align-items: center;
+}
