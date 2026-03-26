@@ -1,10 +1,9 @@
 // 1. Setup Icons (Matching the 'value' in your HTML <select>)
 const icons = {
-    Equipment: "🏀",
+    Equipment: "🪢",
     Snacks: "🍽️",
     Community: "🤝",
     Transport: "🚲",
-    Dues: "💰",
     Other: "📝",
     General: "📊"
 };
