@@ -1,5 +1,5 @@
 const icons = {
-    Sports: "🏀",
+    Equipment: "🪢",
     Snacks: "🍽️",
     Community: "🤝",
     Transport: "🚲",
