@@ -31,19 +31,30 @@ function checkLogin() {
 function openModal(type, id = null) {
     currentType = type;
     editingId = id;
-    document.getElementById('input-modal').style.display = 'flex';
     
+    const modal = document.getElementById('input-modal');
+    const catField = document.getElementById('input-category');
+    
+    modal.style.display = 'flex';
+    
+    // Logic to hide category for Deposits
+    if (type === 'deposit') {
+        catField.classList.add('hidden'); 
+        catField.value = "General"; // Default to General for deposits
+    } else {
+        catField.classList.remove('hidden');
+    }
+
     if (id) {
         const item = transactions.find(t => t.id === id);
         document.getElementById('modal-title').innerText = "Edit Activity";
         document.getElementById('input-amount').value = item.amount;
         document.getElementById('input-desc').value = item.description;
-        document.getElementById('input-category').value = item.category || "General";
+        catField.value = item.category || "General";
     } else {
-        document.getElementById('modal-title').innerText = `Add ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+        document.getElementById('modal-title').innerText = `Add ${type.toUpperCase()}`;
         document.getElementById('input-amount').value = '';
         document.getElementById('input-desc').value = '';
-        document.getElementById('input-category').value = "General";
     }
 }
 
